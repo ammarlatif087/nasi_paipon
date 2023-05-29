@@ -1,13 +1,15 @@
 workflows:
-    sample-workflow:
-        name: Codemagic Sample Workflow
-        max_build_duration: 120
-        instance_type: mac_mini_m1
-        environment:
-        group:
-        - keystore_crendentials
-        - app_store_crendentials
-        vars:
-        
+  main:
+    name: Main Workflow
+    scripts:
+      - name: Install Flutter dependencies
+        script: flutter pub get
 
+      - name: Build iOS archive
+        script: flutter build ios --release --no-codesign
 
+      - name: Export IPA file
+        script: flutter build ipa --release --export-options-plist exportOptions.plist
+
+artifacts:
+  - build/ios/ipa/*.ipa
