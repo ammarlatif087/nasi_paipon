@@ -85,10 +85,10 @@ class MenuDetailView extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Image.asset(
-                    AppImages.logo,
-                    // height: 40.h,
+                    AppImages.kitchen,
+                    height: 60.h,
                     width: 60.w,
-                    fit: BoxFit.fill,
+                    fit: BoxFit.cover,
                   ),
                   20.spaceX,
                   SizedBox(
@@ -133,9 +133,8 @@ class MenuDetailView extends StatelessWidget {
               leading: CircleAvatar(
                 radius: 20.r,
                 backgroundColor: ColorManager.grey,
-                child: Padding(
-                  padding: EdgeInsets.all(10.r),
-                  child: Image.asset(AppImages.logo),
+                backgroundImage: const AssetImage(
+                  AppImages.kitchen,
                 ),
               ),
               title: Utils.popinBoldText('Adam H.'),
@@ -211,7 +210,7 @@ class MenuDetailView extends StatelessWidget {
               ],
             ),
             Utils.popinBoldText(
-              'For you',
+              'From this kitchen',
               fontSize: 16.sp,
             ),
             Expanded(
@@ -223,10 +222,9 @@ class MenuDetailView extends StatelessWidget {
                 itemBuilder: (context, index) => Padding(
                   padding: EdgeInsets.all(8.0.r),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Container(
-                        width: 80.h,
                         height: 80.h,
                         color: ColorManager.orange,
                         child: Image.asset(
@@ -234,8 +232,11 @@ class MenuDetailView extends StatelessWidget {
                           fit: BoxFit.cover,
                         ),
                       ),
-                      Utils.popinRegText(index.toString()),
-                      Utils.popinRegText('25.0 \$')
+                      Utils.popinRegText(
+                        'Menu name',
+                        textAlign: TextAlign.center,
+                      ),
+                      Utils.popinRegText('RM 25.0')
                     ],
                   ),
                 ),

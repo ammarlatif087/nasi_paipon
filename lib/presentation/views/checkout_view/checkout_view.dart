@@ -34,7 +34,7 @@ class CheckoutView extends StatelessWidget {
                     padding:
                         EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
                     child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
                           height: 100.h,
@@ -63,19 +63,40 @@ class CheckoutView extends StatelessWidget {
                             ),
                             10.spaceY,
                             Utils.popinSemBoldText(
-                              'Price: ${viewModel.price}',
+                              'Price:RM ${viewModel.price}',
                             ),
                             10.spaceY,
                             Utils.popinSemBoldText(
-                              'Total Price: ${viewModel.calculateTotalPrice()}',
+                              'Total Price: RM ${viewModel.calculateTotalPrice()}',
                             ),
                           ],
                         ),
                         const Spacer(),
-                        SizedBox(
-                            width: 100.w,
-                            height: 40.h,
-                            child: Container(
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            PopupMenuButton<String>(
+                              child: Container(
+                                height: 36,
+                                width: 48,
+                                alignment: Alignment.centerRight,
+                                child: const Icon(Icons.more_vert),
+                              ),
+                              onSelected: (value) {
+                                // Handle the selected value
+                                print('Selected value: $value');
+                              },
+                              itemBuilder: (context) => [
+                                const PopupMenuItem<String>(
+                                  value: 'remove',
+                                  child: Text('Remove'),
+                                ),
+                              ],
+                            ),
+                            50.spaceY,
+                            Container(
+                              width: 100.w,
+                              height: 40.h,
                               decoration: BoxDecoration(
                                 color: ColorManager.grey,
                                 borderRadius: BorderRadius.circular(20.r),
@@ -100,7 +121,9 @@ class CheckoutView extends StatelessWidget {
                                   ),
                                 ],
                               ),
-                            )),
+                            ),
+                          ],
+                        ),
                       ],
                     ),
                   ),

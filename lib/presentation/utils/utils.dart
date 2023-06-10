@@ -51,10 +51,12 @@ class Utils {
     double? letterSpacing,
     double? wordSpacing,
     TextOverflow? textOverflow,
+    int? maxLines,
   }) {
     return Text(
       text,
       overflow: textOverflow,
+      maxLines: maxLines,
       style: TextStyleManager.popinsReg(
         color: color,
         fontSize: fontSize,

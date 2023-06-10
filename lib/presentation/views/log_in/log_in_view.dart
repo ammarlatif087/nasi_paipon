@@ -94,7 +94,9 @@ class LoginView extends StatelessWidget {
                         bgColor: ColorManager.primary,
                         radius: 10.r,
                         onPress: () {
-                          Get.toNamed(Routes.pickUplocRoute);
+                          viewModel.profileType == ProfileType.kitchen
+                              ? Get.toNamed(Routes.kitchenSectionRoute)
+                              : Get.toNamed(Routes.pickUplocRoute);
                         },
                         child: Utils.popinMedText('Log in',
                             color: ColorManager.white, fontSize: 16.sp),

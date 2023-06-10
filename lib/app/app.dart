@@ -7,6 +7,7 @@ import 'package:nasi_paipon/presentation/view_models/qr_view_model.dart';
 import 'package:nasi_paipon/presentation/view_models/select_location_view_model.dart';
 
 import '../presentation/view_models/auth_view_model.dart';
+import '../presentation/views/messenger/chats_view.dart';
 import 'index.dart';
 
 class MyApp extends StatelessWidget {
@@ -28,7 +29,8 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider(create: (ctx) => HelpCenterViewModel()),
           ChangeNotifierProvider(
               create: (ctx) => SelectFoodCategoryViewModel()),
-          ChangeNotifierProvider(create: (ctx) => OrdersViewModel())
+          ChangeNotifierProvider(create: (ctx) => OrdersViewModel()),
+          ChangeNotifierProvider(create: (ctx) => ChatViewModel()),
         ],
         child: const GetMaterialApp(
           debugShowCheckedModeBanner: false,

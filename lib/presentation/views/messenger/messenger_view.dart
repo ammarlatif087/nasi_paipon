@@ -5,8 +5,24 @@ class MessengerView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Utils.popinSemBoldText('Messenger'),
+    return Scaffold(
+      body: Column(
+        children: [
+          Expanded(
+              child: ListView.builder(
+            itemCount: 5,
+            shrinkWrap: true,
+            itemBuilder: (BuildContext context, int index) {
+              return ListTile(
+                onTap: () {
+                  Get.toNamed(Routes.chatViewRoute);
+                },
+                title: Utils.popinMedText('Username'),
+              );
+            },
+          ))
+        ],
+      ),
     );
   }
 }

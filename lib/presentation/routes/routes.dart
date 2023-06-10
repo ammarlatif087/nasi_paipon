@@ -5,6 +5,7 @@ import 'package:nasi_paipon/presentation/views/forget_password/forget_password_v
 import 'package:nasi_paipon/presentation/views/help_center/help_center_view.dart';
 import 'package:nasi_paipon/presentation/views/kitchen_section/kitchen_section_view.dart';
 import 'package:nasi_paipon/presentation/views/kitchen_section/qr_scanner.dart';
+import 'package:nasi_paipon/presentation/views/kitchen_section/todays_order.dart';
 import 'package:nasi_paipon/presentation/views/log_in/log_in_view.dart';
 import 'package:nasi_paipon/presentation/views/menu_detail/menu_detail_view.dart';
 import 'package:nasi_paipon/presentation/views/order_details/order_details_view.dart';
@@ -19,6 +20,7 @@ import 'package:nasi_paipon/presentation/views/sign_up_kitchen/sign_up_kitchen.d
 
 import '../../app/index.dart';
 import '../views/bottomNavBar/bottom_nav_bar.dart';
+import '../views/messenger/chats_view.dart';
 import '../views/order_details/completed_order_details.dart';
 import '../views/sign_up/sign_up_view.dart';
 import '../views/splash_view.dart';
@@ -48,6 +50,8 @@ class Routes {
   static const String addToCartRoute = '/addToCart';
   static const String recoveryRoute = '/recoveryRoute';
   static const String completedOrderDetails = '/completedOrderDetails';
+  static const String todaysOrderRoute = '/todaysOrderRoute';
+  static const String chatViewRoute = '/chatScreen';
 }
 
 class RoutesGenerator {
@@ -101,6 +105,10 @@ class RoutesGenerator {
       case Routes.completedOrderDetails:
         return MaterialPageRoute(
             builder: (_) => const CompletedOrderDetailsView());
+      case Routes.todaysOrderRoute:
+        return MaterialPageRoute(builder: (_) => TodaysOrderView());
+      case Routes.chatViewRoute:
+        return MaterialPageRoute(builder: (_) => ChatView());
     }
     return _unDefinedRoute();
   }

@@ -13,6 +13,7 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController controller = TextEditingController();
     final viewModel = Provider.of<SelectLocationViewModel>(context);
     final authViewModel = Provider.of<AuthViewModel>(context);
 
@@ -26,95 +27,110 @@ class HomeView extends StatelessWidget {
             fontSize: 24.sp,
           ),
           20.spaceY,
-          DropdownButtonFormField<String>(
-            value: viewModel.selectedRegion.isEmpty
-                ? null
-                : viewModel.selectedRegion,
-            items: viewModel.regions.map((country) {
-              return DropdownMenuItem(
-                value: country,
-                child: Text(country),
-              );
-            }).toList(),
-            onChanged: (value) {
-              viewModel.selectedRegion = value!;
-            },
-            style: TextStyleManager.popinsReg(),
-            borderRadius: BorderRadius.circular(20.r),
-            decoration: InputDecoration(
-              isDense: true,
-              hintText: 'Select a region',
-              labelStyle: TextStyleManager.popinsReg(
-                color: ColorManager.darkGrey,
-                fontSize: 16.sp,
-              ),
-              contentPadding:
-                  EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.r),
-                borderSide: BorderSide(
-                  color: ColorManager.darkGrey,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              SizedBox(
+                width: 150.w,
+                child: DropdownButtonFormField<String>(
+                  value: viewModel.selectedRegion.isEmpty
+                      ? null
+                      : viewModel.selectedRegion,
+                  items: viewModel.regions.map((country) {
+                    return DropdownMenuItem(
+                      value: country,
+                      child: Text(country),
+                    );
+                  }).toList(),
+                  onChanged: (value) {
+                    viewModel.selectedRegion = value!;
+                  },
+                  style: TextStyleManager.popinsReg(),
+                  borderRadius: BorderRadius.circular(20.r),
+                  decoration: InputDecoration(
+                    isDense: true,
+                    hintText: 'Select a region',
+                    labelStyle: TextStyleManager.popinsReg(
+                      color: ColorManager.darkGrey,
+                      fontSize: 16.sp,
+                    ),
+                    contentPadding:
+                        EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.r),
+                      borderSide: BorderSide(
+                        color: ColorManager.darkGrey,
+                      ),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.r),
+                      borderSide: BorderSide(
+                        color: ColorManager.darkGrey,
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.r),
+                      borderSide: BorderSide(
+                        color: ColorManager.darkGrey,
+                      ),
+                    ),
+                  ),
                 ),
               ),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.r),
-                borderSide: BorderSide(
-                  color: ColorManager.darkGrey,
+              10.spaceY,
+              SizedBox(
+                width: 150.w,
+                child: DropdownButtonFormField<String>(
+                  value: viewModel.selectedSubRegion.isEmpty
+                      ? null
+                      : viewModel.selectedSubRegion,
+                  items: viewModel.subRegions.map((value) {
+                    return DropdownMenuItem(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                  onChanged: (value) {
+                    viewModel.selectedSubRegion = value!;
+                  },
+                  style: TextStyleManager.popinsReg(),
+                  decoration: InputDecoration(
+                    isDense: true,
+                    hintText: 'Select a Sub Region',
+                    labelStyle: TextStyleManager.popinsReg(
+                      color: ColorManager.darkGrey,
+                      fontSize: 16.sp,
+                    ),
+                    contentPadding:
+                        EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.r),
+                      borderSide: BorderSide(
+                        color: ColorManager.darkGrey,
+                      ),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.r),
+                      borderSide: BorderSide(
+                        color: ColorManager.darkGrey,
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.r),
+                      borderSide: BorderSide(
+                        color: ColorManager.darkGrey,
+                      ),
+                    ),
+                  ),
                 ),
               ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.r),
-                borderSide: BorderSide(
-                  color: ColorManager.darkGrey,
-                ),
-              ),
-            ),
+            ],
           ),
-          10.spaceY,
-          DropdownButtonFormField<String>(
-            value: viewModel.selectedSubRegion.isEmpty
-                ? null
-                : viewModel.selectedSubRegion,
-            items: viewModel.subRegions.map((value) {
-              return DropdownMenuItem(
-                value: value,
-                child: Text(value),
-              );
-            }).toList(),
-            onChanged: (value) {
-              viewModel.selectedSubRegion = value!;
-            },
-            style: TextStyleManager.popinsReg(),
-            decoration: InputDecoration(
-              isDense: true,
-              hintText: 'Select a Sub Region',
-              labelStyle: TextStyleManager.popinsReg(
-                color: ColorManager.darkGrey,
-                fontSize: 16.sp,
-              ),
-              contentPadding:
-                  EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.r),
-                borderSide: BorderSide(
-                  color: ColorManager.darkGrey,
-                ),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.r),
-                borderSide: BorderSide(
-                  color: ColorManager.darkGrey,
-                ),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.r),
-                borderSide: BorderSide(
-                  color: ColorManager.darkGrey,
-                ),
-              ),
-            ),
-          ),
+
           20.spaceY,
+          _buildSearchField(controller, (e) => null),
+          20.spaceY,
+
           Row(
             children: [
               Container(
@@ -154,7 +170,9 @@ class HomeView extends StatelessWidget {
               ),
             ],
           ),
+
           20.spaceY,
+
           //   Expanded(
           //     child: ListView.separated(
           //       shrinkWrap: true,
@@ -322,6 +340,40 @@ class HomeView extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildSearchField(TextEditingController controller, function(e)) {
+    return TextFormField(
+      onChanged: function,
+      controller: controller,
+      cursorColor: ColorManager.primary,
+      decoration: InputDecoration(
+        filled: true,
+        fillColor: ColorManager.grey,
+        focusColor: ColorManager.primary,
+        contentPadding: EdgeInsets.zero,
+        border: OutlineInputBorder(
+          borderSide: BorderSide.none,
+          borderRadius: BorderRadius.circular(
+            15.r,
+          ),
+        ),
+        prefixIcon: Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: 18.w,
+              vertical: 13.w,
+            ),
+            child: Icon(
+              Icons.search,
+              color: ColorManager.primary,
+            )),
+        hintText: 'Search',
+        hintStyle: TextStyleManager.popinsReg(
+          color: ColorManager.primary.withOpacity(0.4),
+          fontSize: 12.sp,
+        ),
       ),
     );
   }

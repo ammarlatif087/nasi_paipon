@@ -14,18 +14,19 @@ class KitchenSectionView extends StatelessWidget {
             children: [
               ListTile(
                 onTap: () => Get.toNamed(
-                  Routes.kitchensignUpRoute,
+                  Routes.todaysOrderRoute,
                 ),
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.r)),
+                  borderRadius: BorderRadius.circular(10.r),
+                ),
                 tileColor: ColorManager.primary,
                 title: Utils.popinMedText(
-                  'Form Data',
+                  'Todays Orders',
                   fontSize: 16.sp,
                   color: ColorManager.white,
                 ),
                 trailing: Icon(
-                  Icons.file_copy,
+                  Icons.shopping_cart_checkout_sharp,
                   color: ColorManager.white,
                 ),
               ),
@@ -35,7 +36,8 @@ class KitchenSectionView extends StatelessWidget {
                   Routes.qrScannerRoute,
                 ),
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.r)),
+                  borderRadius: BorderRadius.circular(10.r),
+                ),
                 tileColor: ColorManager.primary,
                 title: Utils.popinMedText(
                   'Qr Scanner',

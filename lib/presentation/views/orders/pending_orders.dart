@@ -77,10 +77,10 @@ class PendingOrders extends StatelessWidget {
                                       '5/10/2023 5:08 PM',
                                     ),
                                     10.spaceY,
-                                    Utils.popinSemBoldText('Price:'),
+                                    Utils.popinSemBoldText('Price:120 RM'),
                                     10.spaceY,
                                     Utils.popinSemBoldText(
-                                      'Total Price:',
+                                      'Total Price:RM 300',
                                     ),
                                   ],
                                 ),

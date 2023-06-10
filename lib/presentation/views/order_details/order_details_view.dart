@@ -1,4 +1,3 @@
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:nasi_paipon/presentation/common/app_button.dart';
 import 'package:nasi_paipon/presentation/view_models/order_view_model.dart';
 
@@ -139,6 +138,9 @@ class PendingOrderDetailsView extends StatelessWidget {
               padding: EdgeInsets.all(12.r),
               width: 1.sw,
               decoration: BoxDecoration(
+                border: Border.all(
+                  color: ColorManager.black,
+                ),
                 color: ColorManager.white,
                 borderRadius: BorderRadius.circular(
                   10.r,
@@ -147,10 +149,14 @@ class PendingOrderDetailsView extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Icon(FontAwesomeIcons.clock),
-                  20.spaceX,
-                  Utils.popinMedText(
-                    'Reminder',
+                  Expanded(
+                    child: Utils.popinRegText(
+                      'if you are use a delivery service to pick up your order. please take screenshot of QR Code and give the screenshort to the rider or driver of delivery service',
+                      textOverflow: TextOverflow.ellipsis,
+                      maxLines: 4,
+                      fontSize: 10.sp,
+                      textAlign: TextAlign.justify,
+                    ),
                   ),
                 ],
               ),
@@ -158,102 +164,57 @@ class PendingOrderDetailsView extends StatelessWidget {
             20.spaceY,
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.w),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Utils.popinSemBoldText(
                         'Item',
                         color: ColorManager.black,
                         fontSize: 12.sp,
                       ),
-                      10.spaceY,
-                      SizedBox(
-                        height: 100.h,
-                        width: 100.w,
-                        child: ListView.builder(
-                          shrinkWrap: true,
-                          physics: const AlwaysScrollableScrollPhysics(),
-                          itemCount: viewModel.itemList.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            return Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Utils.popinSemBoldText(
-                                  viewModel.itemList[index],
-                                  color: ColorManager.black,
-                                  fontSize: 12.sp,
-                                ),
-                              ],
-                            );
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
                       Utils.popinSemBoldText(
                         'Qty',
                         color: ColorManager.black,
                         fontSize: 12.sp,
                       ),
-                      10.spaceY,
-                      SizedBox(
-                        height: 100.h,
-                        width: 100.w,
-                        child: ListView.builder(
-                          shrinkWrap: true,
-                          itemCount: viewModel.itemList.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            return Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Utils.popinSemBoldText(
-                                  '2',
-                                  color: ColorManager.black,
-                                  fontSize: 12.sp,
-                                ),
-                              ],
-                            );
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
                       Utils.popinSemBoldText(
-                        'Amount',
+                        'Price',
                         color: ColorManager.black,
                         fontSize: 12.sp,
                       ),
-                      10.spaceY,
-                      SizedBox(
-                        height: 100.h,
-                        width: 100.w,
-                        child: ListView.builder(
-                          shrinkWrap: true,
-                          itemCount: viewModel.itemList.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            return Column(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                Utils.popinSemBoldText(
-                                  '200',
-                                  color: ColorManager.black,
-                                  fontSize: 12.sp,
-                                ),
-                              ],
-                            );
-                          },
-                        ),
-                      ),
                     ],
+                  ),
+                  10.spaceY,
+                  ListView.builder(
+                    shrinkWrap: true,
+                    physics: const AlwaysScrollableScrollPhysics(),
+                    itemCount: viewModel.itemList.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Utils.popinSemBoldText(
+                            viewModel.itemList[index],
+                            color: ColorManager.black,
+                            fontSize: 12.sp,
+                          ),
+                          Utils.popinSemBoldText(
+                            '1',
+                            color: ColorManager.black,
+                            fontSize: 12.sp,
+                          ),
+                          Utils.popinSemBoldText(
+                            'RM 220',
+                            color: ColorManager.black,
+                            fontSize: 12.sp,
+                          ),
+                        ],
+                      );
+                    },
                   ),
                 ],
               ),

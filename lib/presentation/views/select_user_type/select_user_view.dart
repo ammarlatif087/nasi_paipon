@@ -121,13 +121,9 @@ class SelectUserType extends StatelessWidget {
                 child: Utils.popinMedText('Done',
                     color: ColorManager.white, fontSize: 16.sp),
                 onPress: () {
-                  viewModel.profileType == ProfileType.kitchen
-                      ? Get.toNamed(
-                          Routes.kitchenSectionRoute,
-                        )
-                      : Get.toNamed(
-                          Routes.loginRoute,
-                        );
+                  Get.toNamed(
+                    Routes.loginRoute,
+                  );
                 },
               ),
               const Spacer(),
