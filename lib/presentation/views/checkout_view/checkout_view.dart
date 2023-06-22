@@ -77,8 +77,8 @@ class CheckoutView extends StatelessWidget {
                           children: [
                             PopupMenuButton<String>(
                               child: Container(
-                                height: 36,
-                                width: 48,
+                                height: 36.h,
+                                width: 48.w,
                                 alignment: Alignment.centerRight,
                                 child: const Icon(Icons.more_vert),
                               ),

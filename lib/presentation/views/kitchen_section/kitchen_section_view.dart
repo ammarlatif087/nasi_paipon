@@ -49,6 +49,23 @@ class KitchenSectionView extends StatelessWidget {
                   color: ColorManager.white,
                 ),
               ),
+              20.spaceY,
+              ListTile(
+                onTap: () => Get.toNamed(Routes.managementPassRoute),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.r),
+                ),
+                tileColor: ColorManager.primary,
+                title: Utils.popinMedText(
+                  'Management',
+                  fontSize: 16.sp,
+                  color: ColorManager.white,
+                ),
+                trailing: Icon(
+                  Icons.file_copy,
+                  color: ColorManager.white,
+                ),
+              ),
             ],
           ),
         ),

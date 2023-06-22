@@ -1,4 +1,8 @@
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:nasi_paipon/presentation/common/textform_field.dart';
+
 import '../../../app/index.dart';
+import '../../common/app_button.dart';
 import '../../view_models/order_view_model.dart';
 
 class CompletedOrderDetailsView extends StatelessWidget {
@@ -9,6 +13,7 @@ class CompletedOrderDetailsView extends StatelessWidget {
     final viewModel = Provider.of<OrdersViewModel>(context);
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         elevation: 0,
         backgroundColor: ColorManager.primary,
@@ -274,9 +279,92 @@ class CompletedOrderDetailsView extends StatelessWidget {
                 ],
               ),
             ),
+            TextButton(
+              onPressed: () {
+                showRatingDialog(context);
+              },
+              child: Utils.popinMedText(
+                'Click on menu to give review',
+                color: ColorManager.primary,
+              ),
+            ),
           ],
         ),
       ),
+    );
+  }
+
+  void showRatingDialog(BuildContext context) {
+    double rating = 0;
+    TextEditingController textEditingController = TextEditingController();
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Utils.popinSemBoldText(
+                'Mutton Biryani',
+                fontSize: 18.sp,
+              ),
+              10.spaceY,
+              RatingBar.builder(
+                initialRating: rating,
+                minRating: 1,
+                direction: Axis.horizontal,
+                allowHalfRating: true,
+                itemCount: 5,
+                itemSize: 40.0,
+                itemBuilder: (context, _) => const Icon(
+                  Icons.star,
+                  color: Colors.amber,
+                ),
+                onRatingUpdate: (newRating) {
+                  rating = newRating;
+                },
+              ),
+              10.spaceY,
+              Utils.popinMedText(
+                'Rate this food',
+                fontSize: 18.sp,
+              ),
+              20.spaceY,
+              TextFieldWidget(
+                hintText: 'Write your review',
+                controller: textEditingController,
+              ),
+              30.spaceY,
+              SizedBox(
+                height: 40.h,
+                child: AppButton(
+                  bgColor: ColorManager.primary,
+                  radius: 10.r,
+                  child: const Text('Submit'),
+                  onPress: () {
+                    // Handle the submitted rating and comment
+                    String comment = textEditingController.text;
+
+                    // Access the RatingViewModel instance
+                    final ratingViewModel =
+                        Provider.of<OrdersViewModel>(context, listen: false);
+
+                    // Update the rating in the view model
+                    ratingViewModel.updateRating(rating);
+
+                    // Print the updated rating and submitted comment
+                    print('Updated rating: ${ratingViewModel.rating}');
+                    print('Submitted comment: $comment');
+
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }

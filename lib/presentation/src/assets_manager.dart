@@ -11,6 +11,7 @@ class AppIcons {
 class AppImages {
   static const String logo = '$imagesPath/logo.png';
   static const String kitchen = '$imagesPath/kitchen.jpg';
+  static const String food = '$imagesPath/food.png';
 }
 
 class AssetsJson {

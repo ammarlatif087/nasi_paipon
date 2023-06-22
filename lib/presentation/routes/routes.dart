@@ -4,10 +4,16 @@ import 'package:nasi_paipon/presentation/views/edit_profile/edit_profile_view.da
 import 'package:nasi_paipon/presentation/views/forget_password/forget_password_view.dart';
 import 'package:nasi_paipon/presentation/views/help_center/help_center_view.dart';
 import 'package:nasi_paipon/presentation/views/kitchen_section/kitchen_section_view.dart';
+import 'package:nasi_paipon/presentation/views/kitchen_section/management/add_new_menu_user.dart';
+import 'package:nasi_paipon/presentation/views/kitchen_section/management/edit_kitchen_profile.dart';
+import 'package:nasi_paipon/presentation/views/kitchen_section/management/agent_menu_view.dart';
+import 'package:nasi_paipon/presentation/views/kitchen_section/management/user_menu_view.dart';
+import 'package:nasi_paipon/presentation/views/kitchen_section/management/management_passwords_view.dart';
 import 'package:nasi_paipon/presentation/views/kitchen_section/qr_scanner.dart';
 import 'package:nasi_paipon/presentation/views/kitchen_section/todays_order.dart';
 import 'package:nasi_paipon/presentation/views/log_in/log_in_view.dart';
 import 'package:nasi_paipon/presentation/views/menu_detail/menu_detail_view.dart';
+import 'package:nasi_paipon/presentation/views/messenger/messenger_view.dart';
 import 'package:nasi_paipon/presentation/views/order_details/order_details_view.dart';
 import 'package:nasi_paipon/presentation/views/password_recovery/passwords_recovery_view.dart';
 import 'package:nasi_paipon/presentation/views/pick_up_location/pick_up_location_view.dart';
@@ -16,10 +22,22 @@ import 'package:nasi_paipon/presentation/views/privacy_policy/privacy_policy.dar
 import 'package:nasi_paipon/presentation/views/qr_code/qr_code_view.dart';
 import 'package:nasi_paipon/presentation/views/select_food_category/select_food_category_view.dart';
 import 'package:nasi_paipon/presentation/views/select_user_type/select_user_view.dart';
-import 'package:nasi_paipon/presentation/views/sign_up_kitchen/sign_up_kitchen.dart';
+import 'package:nasi_paipon/presentation/views/kitchen_section/sign_up_kitchen/sign_up_kitchen.dart';
 
 import '../../app/index.dart';
 import '../views/bottomNavBar/bottom_nav_bar.dart';
+import '../views/kitchen_section/app_progress_view.dart';
+import '../views/kitchen_section/management/add_agent_menu.dart';
+import '../views/kitchen_section/management/agent_review.dart';
+import '../views/kitchen_section/management/agent_review_detail.dart';
+import '../views/kitchen_section/management/bulk_message.dart';
+import '../views/kitchen_section/management/edit_agent_menu.dart';
+import '../views/kitchen_section/management/edit_user_menu.dart';
+import '../views/kitchen_section/management/management_view.dart';
+import '../views/kitchen_section/management/messenger_section.dart';
+import '../views/kitchen_section/management/operation_holidays_view.dart';
+import '../views/kitchen_section/management/user_review.dart';
+import '../views/kitchen_section/management/user_review_details.dart';
 import '../views/messenger/chats_view.dart';
 import '../views/order_details/completed_order_details.dart';
 import '../views/sign_up/sign_up_view.dart';
@@ -52,6 +70,25 @@ class Routes {
   static const String completedOrderDetails = '/completedOrderDetails';
   static const String todaysOrderRoute = '/todaysOrderRoute';
   static const String chatViewRoute = '/chatScreen';
+  static const String progressViewRoute = '/progressView';
+  static const String managementViewRoute = '/managementView';
+  static const String editKitchenProfile = '/editKitchenProfile';
+
+  static const String managementPassRoute = '/managementPass';
+  static const String userMenuRoute = '/userMenu';
+  static const String kitchenMenu = '/editMenuAgent';
+  static const String addNewMenuUserRoute = '/addNewMenuUser';
+  static const String editUserMenuRoute = '/editUserMenu';
+  static const String addNewAgentMenuRoute = '/addNewAgentMenu';
+  static const String editAgentMenuRoute = '/editAgentMenu';
+  static const String operationHourRoute = '/operationHour';
+  static const String messengerRoute = '/messenger';
+  static const String messengerSectionRoute = '/messengerSection';
+  static const String bulkMessageRoute = '/bulkMessage';
+  static const String userReviewRoute = '/userReview';
+  static const String agentReviewRoute = '/agentReview';
+  static const String userReviewDetailsRoute = '/userReviewDetailsRoute';
+  static const String agentReviewDetailsRoute = '/agentReviewDetailsRoute';
 }
 
 class RoutesGenerator {
@@ -108,7 +145,44 @@ class RoutesGenerator {
       case Routes.todaysOrderRoute:
         return MaterialPageRoute(builder: (_) => TodaysOrderView());
       case Routes.chatViewRoute:
-        return MaterialPageRoute(builder: (_) => ChatView());
+        return MaterialPageRoute(builder: (_) => const ChatView());
+      case Routes.progressViewRoute:
+        return MaterialPageRoute(builder: (_) => const ProgressView());
+      case Routes.managementViewRoute:
+        return MaterialPageRoute(builder: (_) => const ManagementView());
+      case Routes.editUserMenuRoute:
+        return MaterialPageRoute(builder: (_) => const EditUserMenu());
+      case Routes.managementPassRoute:
+        return MaterialPageRoute(builder: (_) => const ManagementPassView());
+      case Routes.kitchenMenu:
+        return MaterialPageRoute(builder: (_) => const AgentMenuView());
+      case Routes.userMenuRoute:
+        return MaterialPageRoute(builder: (_) => const UserMenuView());
+      case Routes.addNewMenuUserRoute:
+        return MaterialPageRoute(builder: (_) => const AddNewMenuUser());
+      case Routes.editKitchenProfile:
+        return MaterialPageRoute(builder: (_) => const EditKitchenProfile());
+      case Routes.addNewAgentMenuRoute:
+        return MaterialPageRoute(builder: (_) => const AddNewAgentMenu());
+      case Routes.editAgentMenuRoute:
+        return MaterialPageRoute(builder: (_) => const EditAgentMenu());
+      case Routes.operationHourRoute:
+        return MaterialPageRoute(
+            builder: (_) => const OperationAndHolidaysView());
+      case Routes.messengerRoute:
+        return MaterialPageRoute(builder: (_) => const MessengerView());
+      case Routes.messengerSectionRoute:
+        return MaterialPageRoute(builder: (_) => const MessengerSection());
+      case Routes.bulkMessageRoute:
+        return MaterialPageRoute(builder: (_) => const BulkMessageView());
+      case Routes.userReviewRoute:
+        return MaterialPageRoute(builder: (_) => const UserReviewView());
+      case Routes.agentReviewRoute:
+        return MaterialPageRoute(builder: (_) => const AgentReviewView());
+      case Routes.userReviewDetailsRoute:
+        return MaterialPageRoute(builder: (_) => const UserReviewDetails());
+      case Routes.agentReviewDetailsRoute:
+        return MaterialPageRoute(builder: (_) => const AgentReviewDetails());
     }
     return _unDefinedRoute();
   }

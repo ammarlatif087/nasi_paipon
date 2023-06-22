@@ -7,6 +7,8 @@ class ChatView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
+        backgroundColor: ColorManager.primary,
         title: Utils.popinMedText(
           'Chat',
           color: ColorManager.white,
@@ -74,17 +76,10 @@ class ChatMessage extends StatelessWidget {
     bool isUserMessage = message.startsWith('You:');
 
     return Container(
-      margin: const EdgeInsets.all(10.0),
+      margin: EdgeInsets.all(15.0.w),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          if (!isUserMessage)
-            const CircleAvatar(
-              child: Icon(Icons.computer),
-            )
-          else
-            const SizedBox(width: 40.0), // Placeholder for user avatar
-          const SizedBox(width: 10.0),
           Expanded(
             child: Column(
               crossAxisAlignment: isUserMessage

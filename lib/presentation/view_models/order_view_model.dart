@@ -3,6 +3,15 @@ import 'package:flutter/material.dart';
 class OrdersViewModel extends ChangeNotifier {
   DateTime? _selectedDate;
   TimeOfDay? _selectedTime;
+  double _rating = 0;
+
+  double get rating => _rating;
+
+  void updateRating(double newRating) {
+    _rating = newRating;
+    notifyListeners();
+  }
+
   final List<String> _itemList = [
     'Pizza',
     'Pizza',

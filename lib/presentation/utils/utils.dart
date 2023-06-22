@@ -15,8 +15,11 @@ class Utils {
   static snackBar(BuildContext context, String message) {
     return ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        backgroundColor: ColorManager.error,
-        content: Text(message),
+        backgroundColor: ColorManager.black,
+        content: Utils.popinSemBoldText(
+          message,
+          color: ColorManager.white,
+        ),
       ),
     );
   }

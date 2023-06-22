@@ -171,7 +171,7 @@ class MenuDetailView extends StatelessWidget {
                 Expanded(
                   child: OutlinedButton(
                     onPressed: () {
-                      //  Get.toNamed(Routes.placeOrderRoute);
+                      Get.toNamed(Routes.chatViewRoute);
                     },
                     child: Utils.popinBoldText(
                       'Chat',

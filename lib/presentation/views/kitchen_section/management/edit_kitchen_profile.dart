@@ -1,17 +1,20 @@
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:nasi_paipon/app/extensions.dart';
 import 'package:nasi_paipon/presentation/view_models/auth_view_model.dart';
 
-import '../../../app/index.dart';
-import '../../common/app_button.dart';
-import '../../common/textform_field.dart';
+import '../../../../app/index.dart';
+import '../../../common/app_button.dart';
+import '../../../common/textform_field.dart';
+import '../../../view_models/select_location_view_model.dart';
 
-class KitchenSignUpView extends StatelessWidget {
-  const KitchenSignUpView({super.key});
+class EditKitchenProfile extends StatelessWidget {
+  const EditKitchenProfile({super.key});
 
   @override
   Widget build(BuildContext context) {
     final viewModel = Provider.of<AuthViewModel>(context);
+    final viewModel2 = Provider.of<SelectLocationViewModel>(context);
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -31,10 +34,7 @@ class KitchenSignUpView extends StatelessWidget {
                     child: CircleAvatar(
                       radius: 34.r,
                       backgroundColor: ColorManager.primary,
-                      child: Icon(
-                        Icons.person,
-                        color: ColorManager.white,
-                      ),
+                      backgroundImage: const AssetImage(AppImages.logo),
                     ),
                   ),
                 ),
@@ -72,34 +72,108 @@ class KitchenSignUpView extends StatelessWidget {
                         },
                       ),
                       20.spaceY,
-                      TextFieldWidget(
-                        keyboardType: TextInputType.name,
-                        hintText: 'Region',
-                        prefixIcon: Icon(
-                          Icons.location_on_outlined,
-                          color: ColorManager.darkGrey,
-                        ),
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Enter Your Region';
-                          }
-                          return null;
+                      DropdownButtonFormField<String>(
+                        value: viewModel2.selectedRegion.isEmpty
+                            ? null
+                            : viewModel2.selectedRegion,
+                        items: viewModel2.regions.map((country) {
+                          return DropdownMenuItem(
+                            value: country,
+                            child: Text(country),
+                          );
+                        }).toList(),
+                        onChanged: (value) {
+                          viewModel2.selectedRegion = value!;
                         },
+                        borderRadius: BorderRadius.circular(20.r),
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.symmetric(
+                              horizontal: 10.w, vertical: 12.h),
+                          filled: true,
+                          fillColor: ColorManager.grey,
+                          isDense: true,
+
+                          hintText: 'Select a region',
+                          labelStyle: TextStyleManager.popinsReg(
+                            color: ColorManager.darkGrey,
+                            fontSize: 16.sp,
+                          ),
+
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.r),
+                            borderSide: BorderSide(
+                              color: ColorManager.grey,
+                            ),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.r),
+                            borderSide: BorderSide(
+                              color: ColorManager.darkGrey,
+                            ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.r),
+                            borderSide: BorderSide(
+                              color: ColorManager.darkGrey,
+                            ),
+                          ),
+
+                          // border: OutlineInputBorderRectangleStyle.getEnabledBorder(),
+                          // enabledBorder:
+                          // OutlineInputBorderCircularStyle.getEnabledBorder(),
+                        ),
                       ),
                       20.spaceY,
-                      TextFieldWidget(
-                        keyboardType: TextInputType.name,
-                        hintText: 'Sub Region',
-                        prefixIcon: Icon(
-                          Icons.location_on_outlined,
-                          color: ColorManager.darkGrey,
-                        ),
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Enter Your Sub Region';
-                          }
-                          return null;
+                      DropdownButtonFormField<String>(
+                        value: viewModel2.selectedSubRegion.isEmpty
+                            ? null
+                            : viewModel2.selectedSubRegion,
+                        items: viewModel2.subRegions.map((country) {
+                          return DropdownMenuItem(
+                            value: country,
+                            child: Text(country),
+                          );
+                        }).toList(),
+                        onChanged: (value) {
+                          viewModel2.selectedSubRegion = value!;
                         },
+                        borderRadius: BorderRadius.circular(20.r),
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.symmetric(
+                              horizontal: 10.w, vertical: 12.h),
+                          filled: true,
+                          fillColor: ColorManager.grey,
+                          isDense: true,
+
+                          hintText: 'Select a Sub region',
+                          labelStyle: TextStyleManager.popinsReg(
+                            color: ColorManager.darkGrey,
+                            fontSize: 16.sp,
+                          ),
+
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.r),
+                            borderSide: BorderSide(
+                              color: ColorManager.grey,
+                            ),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.r),
+                            borderSide: BorderSide(
+                              color: ColorManager.darkGrey,
+                            ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.r),
+                            borderSide: BorderSide(
+                              color: ColorManager.darkGrey,
+                            ),
+                          ),
+
+                          // border: OutlineInputBorderRectangleStyle.getEnabledBorder(),
+                          // enabledBorder:
+                          // OutlineInputBorderCircularStyle.getEnabledBorder(),
+                        ),
                       ),
                       20.spaceY,
                       TextFieldWidget(
@@ -207,6 +281,22 @@ class KitchenSignUpView extends StatelessWidget {
                       20.spaceY,
                       TextFieldWidget(
                         keyboardType: TextInputType.number,
+                        hintText: 'Phone no',
+                        prefixIcon: Icon(
+                          FontAwesomeIcons.phone,
+                          color: ColorManager.darkGrey,
+                        ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Enter Your Phone no';
+                          }
+                          return null;
+                        },
+                      ),
+                      20.spaceY,
+                      20.spaceY,
+                      TextFieldWidget(
+                        keyboardType: TextInputType.text,
                         hintText: 'Tiktok Link',
                         prefixIcon: Icon(
                           FontAwesomeIcons.tiktok,
@@ -221,7 +311,7 @@ class KitchenSignUpView extends StatelessWidget {
                       ),
                       20.spaceY,
                       TextFieldWidget(
-                        keyboardType: TextInputType.number,
+                        keyboardType: TextInputType.text,
                         hintText: 'Facebook Link',
                         prefixIcon: Icon(
                           FontAwesomeIcons.facebook,
@@ -236,7 +326,7 @@ class KitchenSignUpView extends StatelessWidget {
                       ),
                       20.spaceY,
                       TextFieldWidget(
-                        keyboardType: TextInputType.number,
+                        keyboardType: TextInputType.text,
                         hintText: 'Instagram Link',
                         prefixIcon: Icon(
                           FontAwesomeIcons.instagram,
@@ -251,7 +341,7 @@ class KitchenSignUpView extends StatelessWidget {
                       ),
                       20.spaceY,
                       TextFieldWidget(
-                        keyboardType: TextInputType.number,
+                        keyboardType: TextInputType.text,
                         hintText: 'Website Link',
                         prefixIcon: Icon(
                           FontAwesomeIcons.globe,
@@ -266,7 +356,7 @@ class KitchenSignUpView extends StatelessWidget {
                       ),
                       20.spaceY,
                       TextFieldWidget(
-                        keyboardType: TextInputType.number,
+                        keyboardType: TextInputType.text,
                         hintText: 'Google Map location Link',
                         prefixIcon: Icon(
                           Icons.location_on,
@@ -280,12 +370,40 @@ class KitchenSignUpView extends StatelessWidget {
                         },
                       ),
                       20.spaceY,
+                      Utils.popinSemBoldText(
+                        'Your Nasi Paipon link',
+                        fontSize: 16.sp,
+                      ),
+                      Builder(
+                        builder: (context) =>
+                            Utils.popinRegText('www.nasipaipon.com'),
+                      ),
+                      TextButton(
+                        style: TextButton.styleFrom(
+                          backgroundColor: ColorManager.grey,
+                          foregroundColor: ColorManager.black,
+                        ),
+                        onPressed: () {
+                          const textToCopy =
+                              'www.nasipaipon.com'; // Replace with the text you want to copy
+                          Clipboard.setData(
+                              const ClipboardData(text: textToCopy));
+                          Utils.snackBar(context, 'Link copied to clipboard');
+                        },
+                        child: Utils.popinMedText('Copy link'),
+                      ),
+                      20.spaceY,
                       AppButton(
                         bgColor: ColorManager.primary,
                         radius: 20.r,
-                        onPress: () {},
-                        child: Utils.popinMedText('Sign Up',
-                            color: ColorManager.white, fontSize: 16.sp),
+                        onPress: () {
+                          Get.toNamed(Routes.progressViewRoute);
+                        },
+                        child: Utils.popinMedText(
+                          'Save',
+                          color: ColorManager.white,
+                          fontSize: 16.sp,
+                        ),
                       ),
                       20.spaceY,
                     ],

@@ -1,17 +1,6 @@
 import '../../app/index.dart';
 
 class TextStyleManager {
-  static TextStyle _getTextStyle(String fontFamily, Color textColor,
-      double fontSize, FontWeight fontWeight,
-      {double? letterSpacing}) {
-    return TextStyle(
-        fontFamily: fontFamily,
-        color: textColor,
-        fontSize: fontSize,
-        fontWeight: fontWeight,
-        letterSpacing: letterSpacing);
-  }
-
   static TextStyle popinsLight({
     Color? color,
     double? fontSize,

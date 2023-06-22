@@ -1,12 +1,16 @@
 import 'package:nasi_paipon/presentation/view_models/bottom_nav_view_model.dart';
 import 'package:nasi_paipon/presentation/view_models/checkout_view_model.dart';
+import 'package:nasi_paipon/presentation/view_models/edit_menu_view_model.dart';
 import 'package:nasi_paipon/presentation/view_models/food_category_view_model.dart';
 import 'package:nasi_paipon/presentation/view_models/help_center_view_model.dart';
+import 'package:nasi_paipon/presentation/view_models/menu_setting_view_model.dart';
 import 'package:nasi_paipon/presentation/view_models/order_view_model.dart';
 import 'package:nasi_paipon/presentation/view_models/qr_view_model.dart';
 import 'package:nasi_paipon/presentation/view_models/select_location_view_model.dart';
 
 import '../presentation/view_models/auth_view_model.dart';
+import '../presentation/view_models/bulk_message_view_model.dart';
+import '../presentation/view_models/set_holidays_view_model.dart';
 import '../presentation/views/messenger/chats_view.dart';
 import 'index.dart';
 
@@ -31,6 +35,10 @@ class MyApp extends StatelessWidget {
               create: (ctx) => SelectFoodCategoryViewModel()),
           ChangeNotifierProvider(create: (ctx) => OrdersViewModel()),
           ChangeNotifierProvider(create: (ctx) => ChatViewModel()),
+          ChangeNotifierProvider(create: (ctx) => MenuSettingViewModel()),
+          ChangeNotifierProvider(create: (ctx) => EditMenuViewModel()),
+          ChangeNotifierProvider(create: (ctx) => SetHolidaysViewModel()),
+          ChangeNotifierProvider(create: (ctx) => BulkMessageViewModel()),
         ],
         child: const GetMaterialApp(
           debugShowCheckedModeBanner: false,
