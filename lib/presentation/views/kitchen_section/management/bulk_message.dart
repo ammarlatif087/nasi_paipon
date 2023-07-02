@@ -81,7 +81,7 @@ class BulkMessageView extends StatelessWidget {
                       },
                     ),
                     Utils.popinRegText(
-                      'All User In sub region',
+                      'All Agents In sub region',
                       fontSize: 16.sp,
                     ),
                   ],
@@ -111,12 +111,17 @@ class BulkMessageView extends StatelessWidget {
                       6,
                       (index) => ListTile(
                             contentPadding: EdgeInsets.zero,
-                            title: Utils.popinMedText('Name'),
+                            title: Utils.popinSemBoldText(
+                              'Name',
+                              fontSize: 16.sp,
+                            ),
                             subtitle: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Utils.popinMedText(
-                                    'this is a previous dummy messages '),
+                                  'this is a previous dummy messages ',
+                                  fontSize: 16.sp,
+                                ),
                                 Utils.popinMedText('Images'),
                               ],
                             ),

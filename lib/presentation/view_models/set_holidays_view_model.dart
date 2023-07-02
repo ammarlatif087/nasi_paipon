@@ -1,14 +1,30 @@
 import 'package:nasi_paipon/app/index.dart';
 
-class SetHolidaysViewModel extends ChangeNotifier {
-  bool _isChecked = false;
+enum DatePickerMode { single, multiple }
 
-  bool get isChecked => _isChecked;
+class SetHolidaysViewModel extends ChangeNotifier {
+  TimeOfDay? _selectedStartTime;
+  TimeOfDay? _selectedEndTime;
+
+  TimeOfDay? get selectedStartTime => _selectedStartTime;
+  TimeOfDay? get selectedEndTime => _selectedEndTime;
+
   final List<DateTime> _selectedDates = [];
+  DatePickerMode _datePickerMode = DatePickerMode.multiple;
 
   List<DateTime> get selectedDates => _selectedDates;
 
+  DatePickerMode get datePickerMode => _datePickerMode;
+
+  void setDatePickerMode(DatePickerMode mode) {
+    _datePickerMode = mode;
+    notifyListeners();
+  }
+
   void addSelectedDate(DateTime date) {
+    if (_datePickerMode == DatePickerMode.single) {
+      _selectedDates.clear();
+    }
     _selectedDates.add(date);
     notifyListeners();
   }
@@ -22,40 +38,61 @@ class SetHolidaysViewModel extends ChangeNotifier {
     return _selectedDates.contains(date);
   }
 
-  void toggleCheckbox(bool value) {
-    _isChecked = value;
-    notifyListeners();
-  }
-
   Future<void> showDatePickerDialog(BuildContext context) async {
-    final DateTime? selectedDate = await showDatePicker(
+    final DateTime? picked = await showDatePicker(
       context: context,
       initialDate: DateTime.now(),
-      firstDate: DateTime.now(), // Set the first selectable date as today
-      lastDate: DateTime(2030),
+      firstDate: DateTime(DateTime.now().year - 1),
+      lastDate: DateTime(DateTime.now().year + 1),
       selectableDayPredicate: (DateTime date) {
-        // Enable or disable date selection based on the predicate
-        return date.isAfter(DateTime.now().subtract(const Duration(days: 1)));
-      },
-      builder: (BuildContext context, Widget? child) {
-        return Theme(
-          data: ThemeData.light().copyWith(
-            colorScheme: const ColorScheme.light().copyWith(
-              primary: Colors.blue,
-            ),
-          ),
-          child: child!,
-        );
+        return !isDateSelected(date);
       },
     );
 
-    if (selectedDate != null) {
-      final model = Provider.of<SetHolidaysViewModel>(context, listen: false);
-      if (model.isDateSelected(selectedDate)) {
-        model.removeSelectedDate(selectedDate);
-      } else {
-        model.addSelectedDate(selectedDate);
-      }
+    if (picked != null) {
+      addSelectedDate(picked);
     }
+  }
+
+  Future<TimeOfDay?> startTimePickerDialog(BuildContext context) async {
+    final TimeOfDay now = TimeOfDay.now();
+    final TimeOfDay initialTime = now;
+
+    final TimeOfDay? selectedTime = await showTimePicker(
+      context: context,
+      initialTime: initialTime,
+    );
+
+    if (selectedTime != null) {
+      selectStartTime(selectedTime);
+    }
+
+    return selectedTime;
+  }
+
+  void selectStartTime(TimeOfDay time) {
+    _selectedStartTime = time;
+    notifyListeners();
+  }
+
+  Future<TimeOfDay?> endPickerDialog(BuildContext context) async {
+    final TimeOfDay now = TimeOfDay.now();
+    final TimeOfDay initialTime = now;
+
+    final TimeOfDay? selectedEndTime = await showTimePicker(
+      context: context,
+      initialTime: initialTime,
+    );
+
+    if (selectedEndTime != null) {
+      selectEndTime(selectedEndTime);
+    }
+
+    return selectedEndTime;
+  }
+
+  void selectEndTime(TimeOfDay time) {
+    _selectedEndTime = time;
+    notifyListeners();
   }
 }

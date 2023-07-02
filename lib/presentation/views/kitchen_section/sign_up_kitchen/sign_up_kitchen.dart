@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:nasi_paipon/app/extensions.dart';
 import 'package:nasi_paipon/presentation/view_models/auth_view_model.dart';
@@ -27,16 +29,19 @@ class KitchenSignUpView extends StatelessWidget {
                   fontSize: 24.sp,
                 ),
                 20.spaceY,
-                InkWell(
-                  onTap: () {},
+                GestureDetector(
+                  onTap: () => viewModel.pickImage(),
                   child: Center(
                     child: CircleAvatar(
-                      radius: 34.r,
-                      backgroundColor: ColorManager.primary,
-                      child: Icon(
-                        Icons.person,
-                        color: ColorManager.white,
-                      ),
+                      radius: 34,
+                      backgroundImage: viewModel.imagePath != null
+                          ? FileImage(File(viewModel.imagePath!))
+                          : null,
+                      backgroundColor:
+                          viewModel.imagePath != null ? null : ColorManager.red,
+                      child: viewModel.imagePath == null
+                          ? const Icon(Icons.person, color: Colors.white)
+                          : null,
                     ),
                   ),
                 ),
@@ -285,7 +290,7 @@ class KitchenSignUpView extends StatelessWidget {
                         keyboardType: TextInputType.number,
                         hintText: 'Phone no',
                         prefixIcon: Icon(
-                          FontAwesomeIcons.tiktok,
+                          FontAwesomeIcons.phone,
                           color: ColorManager.darkGrey,
                         ),
                         validator: (value) {
@@ -344,14 +349,14 @@ class KitchenSignUpView extends StatelessWidget {
                       20.spaceY,
                       TextFieldWidget(
                         keyboardType: TextInputType.text,
-                        hintText: 'Website Link',
+                        hintText: 'YouTube Link',
                         prefixIcon: Icon(
-                          FontAwesomeIcons.globe,
+                          FontAwesomeIcons.youtube,
                           color: ColorManager.darkGrey,
                         ),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Enter WebsiteLink';
+                            return 'Enter YouTube Link';
                           }
                           return null;
                         },

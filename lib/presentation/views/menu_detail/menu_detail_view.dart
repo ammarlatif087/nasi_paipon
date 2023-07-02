@@ -11,7 +11,7 @@ class MenuDetailView extends StatelessWidget {
       FontAwesomeIcons.tiktok,
       FontAwesomeIcons.facebook,
       FontAwesomeIcons.instagram,
-      FontAwesomeIcons.globe,
+      FontAwesomeIcons.youtube,
       Icons.location_on,
       Icons.share,
     ];

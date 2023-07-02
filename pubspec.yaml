@@ -46,6 +46,8 @@ dependencies:
   pinput: ^2.2.31
   flutter_pin_code_fields: ^1.2.0
   flutter_rating_bar: ^4.0.1
+  image_picker: ^0.8.9
+  syncfusion_flutter_datepicker: ^21.2.9
 dev_dependencies:
   flutter_test:
     sdk: flutter

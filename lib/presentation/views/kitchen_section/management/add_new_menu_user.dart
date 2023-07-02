@@ -208,7 +208,7 @@ class AddNewMenuUser extends StatelessWidget {
               ),
               16.spaceY,
               Utils.popinMedText(
-                'Prome RM',
+                'Promo RM',
                 fontSize: 18.sp,
               ),
               16.spaceY,
@@ -218,7 +218,7 @@ class AddNewMenuUser extends StatelessWidget {
                     width: 150.w,
                     child: TextFieldWidget(
                       keyboardType: TextInputType.text,
-                      hintText: 'Prime RM',
+                      hintText: 'Promo RM',
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Enter Your Prome RM';
@@ -295,7 +295,7 @@ class AddNewMenuUser extends StatelessWidget {
                       viewModel.setSelectedFood(value!);
                     },
                   ),
-                  Utils.popinRegText('Haram'),
+                  Utils.popinRegText('Non Halal'),
                 ],
               ),
               10.spaceY,

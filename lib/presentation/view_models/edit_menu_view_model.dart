@@ -9,40 +9,50 @@ enum PromoOption { show, hide }
 enum FoodType { halal, haram }
 
 class EditMenuViewModel extends ChangeNotifier {
-//radio for publish or unpublish
   Option _selectedOption = Option.publish;
   Option get selectedOption => _selectedOption;
+
   void setSelectedOption(Option option) {
     _selectedOption = option;
+    printSelectedValues();
     notifyListeners();
   }
 
-  // radio for food type
   FoodType _selectedFoodType = FoodType.halal;
   FoodType get selectedFood => _selectedFoodType;
+
   void setSelectedFood(FoodType option) {
     _selectedFoodType = option;
+    printSelectedValues();
     notifyListeners();
   }
 
-  // radio for price hide show
   PriceOption _selectedPriceOpt = PriceOption.show;
-
   PriceOption get selectedPriceOpt => _selectedPriceOpt;
 
   void setPriceOption(PriceOption option) {
-    _selectedPriceOpt = option;
-
-    notifyListeners();
+    if (option != PriceOption.strike) {
+      _selectedPriceOpt = option;
+      if (_selectedPriceOpt == PriceOption.show) {
+        _promoOption = PromoOption.hide;
+      }
+      printSelectedValues();
+      notifyListeners();
+    }
   }
 
-  //radio for promo rm
-  PromoOption _promoOption = PromoOption.show;
+  PromoOption _promoOption = PromoOption.hide;
   PromoOption get promoOption => _promoOption;
-  void selectedPromoOption(PromoOption option) {
-    _promoOption = option;
 
-    notifyListeners();
+  void selectedPromoOption(PromoOption option) {
+    if (option != PromoOption.hide) {
+      _promoOption = option;
+      if (_promoOption == PromoOption.show) {
+        _selectedPriceOpt = PriceOption.strike;
+      }
+      printSelectedValues();
+      notifyListeners();
+    }
   }
 
   void handleEdit() {
@@ -75,5 +85,12 @@ class EditMenuViewModel extends ChangeNotifier {
       },
     );
     print('Delete');
+  }
+
+  void printSelectedValues() {
+    print('Selected Option: $_selectedOption');
+    print('Selected Food Type: $_selectedFoodType');
+    print('Selected Price Option: $_selectedPriceOpt');
+    print('Selected Promo Option: $_promoOption');
   }
 }

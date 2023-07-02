@@ -208,7 +208,7 @@ class AddNewAgentMenu extends StatelessWidget {
               ),
               16.spaceY,
               Utils.popinMedText(
-                'Prome RM',
+                'Promo RM',
                 fontSize: 18.sp,
               ),
               16.spaceY,

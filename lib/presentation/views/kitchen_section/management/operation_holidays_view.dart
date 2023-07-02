@@ -1,8 +1,8 @@
-import 'package:intl/intl.dart';
 import 'package:nasi_paipon/app/index.dart';
 import 'package:nasi_paipon/presentation/common/app_button.dart';
+import 'package:nasi_paipon/presentation/common/textform_field.dart';
+import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
-import '../../../common/textform_field.dart';
 import '../../../view_models/set_holidays_view_model.dart';
 
 class OperationAndHolidaysView extends StatelessWidget {
@@ -27,45 +27,65 @@ class OperationAndHolidaysView extends StatelessWidget {
                 'Start',
                 fontSize: 18.sp,
               ),
-              16.spaceY,
-              SizedBox(
-                width: 170.w,
-                child: TextFieldWidget(
-                  keyboardType: TextInputType.phone,
-                  hintText: 'Starting Hour',
-                  prefixIcon: Icon(
-                    Icons.watch_later_outlined,
-                    color: ColorManager.darkGrey,
+              GestureDetector(
+                onTap: () {
+                  viewModel.startTimePickerDialog(context);
+                },
+                child: Container(
+                  height: 65.h,
+                  width: 170.w,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15.r),
+                    color: ColorManager.grey,
                   ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Enter starting hour';
-                    }
-                    return null;
-                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Icon(
+                        Icons.watch_later_outlined,
+                        color: ColorManager.darkGrey,
+                      ),
+                      Utils.popinSemBoldText(
+                        viewModel.selectedStartTime != null
+                            ? viewModel.selectedStartTime!.format(context)
+                            : 'Select Starting Hours',
+                        fontSize: 16.sp,
+                      ),
+                    ],
+                  ),
                 ),
               ),
-              16.spaceY,
               Utils.popinSemBoldText(
                 'End',
                 fontSize: 18.sp,
               ),
               16.spaceY,
-              SizedBox(
-                width: 170.w,
-                child: TextFieldWidget(
-                  keyboardType: TextInputType.phone,
-                  hintText: 'Ending Hour',
-                  prefixIcon: Icon(
-                    Icons.watch_later_outlined,
-                    color: ColorManager.darkGrey,
+              GestureDetector(
+                onTap: () {
+                  viewModel.endPickerDialog(context);
+                },
+                child: Container(
+                  height: 65.h,
+                  width: 170.w,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15.r),
+                    color: ColorManager.grey,
                   ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Enter Endign hour';
-                    }
-                    return null;
-                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Icon(
+                        Icons.watch_later_outlined,
+                        color: ColorManager.darkGrey,
+                      ),
+                      Utils.popinSemBoldText(
+                        viewModel.selectedEndTime != null
+                            ? viewModel.selectedEndTime!.format(context)
+                            : 'Select Ending Hours',
+                        fontSize: 16.sp,
+                      ),
+                    ],
+                  ),
                 ),
               ),
               16.spaceY,
@@ -74,19 +94,18 @@ class OperationAndHolidaysView extends StatelessWidget {
                 fontSize: 18.sp,
               ),
               16.spaceY,
-              CheckboxListTile(
-                dense: true,
-                checkColor: ColorManager.white,
-                activeColor: ColorManager.primary,
-                contentPadding: EdgeInsets.zero,
-                title: Utils.popinMedText(
-                  'Days in Advance',
-                  fontSize: 18.sp,
-                ),
-                value: viewModel.isChecked,
-                onChanged: (bool? value) {
-                  viewModel.toggleCheckbox(value ?? false);
-                },
+              Row(
+                children: [
+                  SizedBox(
+                    width: 40.w,
+                    child: const TextFieldWidget(hintText: '2'),
+                  ),
+                  20.spaceX,
+                  Utils.popinSemBoldText(
+                    'Days in advance',
+                    fontSize: 18.sp,
+                  ),
+                ],
               ),
               16.spaceY,
               AppButton(
@@ -98,15 +117,19 @@ class OperationAndHolidaysView extends StatelessWidget {
                     fontSize: 18.sp,
                   ),
                   onPress: () {
+                    print('object');
                     viewModel.showDatePickerDialog(context);
+                    // viewModel.showDatePickerDialog(context);
                   }),
               16.spaceY,
               Column(
-                children: viewModel.selectedDates.map((date) {
-                  return Utils.popinSemBoldText(
-                    DateFormat('dd-MM-yyyy').format(date),
-                  );
-                }).toList(),
+                children: viewModel.selectedDates
+                    .map((date) => Text(date.toString()))
+                    .toList(),
+              ),
+              SfDateRangePicker(
+                view: DateRangePickerView.month,
+                selectionMode: DateRangePickerSelectionMode.multiple,
               ),
               16.spaceY,
               Center(

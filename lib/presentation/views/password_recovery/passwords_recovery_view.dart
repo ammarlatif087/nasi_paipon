@@ -1,6 +1,8 @@
 import 'package:flutter_pin_code_fields/flutter_pin_code_fields.dart';
 
 import '../../../app/index.dart';
+import '../../utils/enums.dart';
+import '../../view_models/auth_view_model.dart';
 
 class PasswordsRecoveryView extends StatelessWidget {
   final TextEditingController _otpController = TextEditingController();
@@ -9,6 +11,11 @@ class PasswordsRecoveryView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final viewModel = Provider.of<AuthViewModel>(context, listen: false);
+      viewModel.startCountdown();
+    });
+    final viewModel = Provider.of<AuthViewModel>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: ColorManager.primary,
@@ -29,7 +36,9 @@ class PasswordsRecoveryView extends StatelessWidget {
             ),
             20.spaceY,
             Utils.popinSemBoldText(
-              'Your Verification code has been sent to +92317****23',
+              viewModel.recoveryType == RecoveryType.text
+                  ? 'Your Verification code has been sent to +92317****23'
+                  : 'Your Verification code has been sent to email***@gmail.com',
               fontSize: 12.sp,
               textAlign: TextAlign.center,
               color: ColorManager.darkGrey,
@@ -65,7 +74,7 @@ class PasswordsRecoveryView extends StatelessWidget {
             ),
             20.spaceY,
             Utils.popinMedText(
-              'Resend Afrer 60s',
+              '${viewModel.seconds}',
               fontSize: 12.sp,
               textAlign: TextAlign.center,
               color: ColorManager.black,
