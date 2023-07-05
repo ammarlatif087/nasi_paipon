@@ -1,4 +1,5 @@
 import 'package:nasi_paipon/app/index.dart';
+import 'package:nasi_paipon/presentation/common/app_info_widget.dart';
 import 'package:nasi_paipon/presentation/common/textform_field.dart';
 import 'package:nasi_paipon/presentation/view_models/edit_menu_view_model.dart';
 
@@ -46,9 +47,17 @@ class AddNewMenuUser extends StatelessWidget {
                 ],
               ),
               16.spaceY,
-              Utils.popinMedText(
-                'Menu Name',
-                fontSize: 18.sp,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Utils.popinMedText(
+                    'Menu Name',
+                    fontSize: 18.sp,
+                  ),
+                  const AppInfoWidget(
+                    message: 'Dummmy Data',
+                  )
+                ],
               ),
               16.spaceY,
               TextFieldWidget(
@@ -62,9 +71,17 @@ class AddNewMenuUser extends StatelessWidget {
                 },
               ),
               16.spaceY,
-              Utils.popinMedText(
-                'Description',
-                fontSize: 18.sp,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Utils.popinMedText(
+                    'Description',
+                    fontSize: 18.sp,
+                  ),
+                  const AppInfoWidget(
+                    message: 'Dummmy Data',
+                  )
+                ],
               ),
               16.spaceY,
               TextFieldWidget(
@@ -78,9 +95,17 @@ class AddNewMenuUser extends StatelessWidget {
                 },
               ),
               16.spaceY,
-              Utils.popinMedText(
-                'Weight',
-                fontSize: 18.sp,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Utils.popinMedText(
+                    'Weight',
+                    fontSize: 18.sp,
+                  ),
+                  const AppInfoWidget(
+                    message: 'Dummmy Data',
+                  )
+                ],
               ),
               16.spaceY,
               TextFieldWidget(
@@ -94,9 +119,17 @@ class AddNewMenuUser extends StatelessWidget {
                 },
               ),
               16.spaceY,
-              Utils.popinMedText(
-                'Packaging size',
-                fontSize: 18.sp,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Utils.popinMedText(
+                    'Packaging size',
+                    fontSize: 18.sp,
+                  ),
+                  const AppInfoWidget(
+                    message: 'Dummmy Data',
+                  )
+                ],
               ),
               16.spaceY,
               Row(
@@ -152,9 +185,17 @@ class AddNewMenuUser extends StatelessWidget {
                 ],
               ),
               16.spaceY,
-              Utils.popinMedText(
-                'Production per day ',
-                fontSize: 18.sp,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Utils.popinMedText(
+                    'Production per day',
+                    fontSize: 18.sp,
+                  ),
+                  const AppInfoWidget(
+                    message: 'Dummmy Data',
+                  )
+                ],
               ),
               16.spaceY,
               TextFieldWidget(
@@ -168,9 +209,17 @@ class AddNewMenuUser extends StatelessWidget {
                 },
               ),
               16.spaceY,
-              Utils.popinMedText(
-                'Price RM',
-                fontSize: 18.sp,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Utils.popinMedText(
+                    'Price RM',
+                    fontSize: 18.sp,
+                  ),
+                  const AppInfoWidget(
+                    message: 'Dummmy Data',
+                  )
+                ],
               ),
               16.spaceY,
               Row(
@@ -179,10 +228,10 @@ class AddNewMenuUser extends StatelessWidget {
                     width: 150.w,
                     child: TextFieldWidget(
                       keyboardType: TextInputType.text,
-                      hintText: 'Price',
+                      hintText: 'Price RM',
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Enter Your Price';
+                          return 'Enter Your Price RM';
                         }
                         return null;
                       },
@@ -207,9 +256,17 @@ class AddNewMenuUser extends StatelessWidget {
                 ],
               ),
               16.spaceY,
-              Utils.popinMedText(
-                'Promo RM',
-                fontSize: 18.sp,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Utils.popinMedText(
+                    'Promo RM',
+                    fontSize: 18.sp,
+                  ),
+                  const AppInfoWidget(
+                    message: 'Dummmy Data',
+                  )
+                ],
               ),
               16.spaceY,
               Row(
@@ -246,9 +303,17 @@ class AddNewMenuUser extends StatelessWidget {
                 ],
               ),
               16.spaceY,
-              Utils.popinMedText(
-                'Category ',
-                fontSize: 18.sp,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Utils.popinMedText(
+                    'Category',
+                    fontSize: 18.sp,
+                  ),
+                  const AppInfoWidget(
+                    message: 'Dummmy Data',
+                  )
+                ],
               ),
               16.spaceY,
               TextFieldWidget(
@@ -262,9 +327,17 @@ class AddNewMenuUser extends StatelessWidget {
                 },
               ),
               16.spaceY,
-              Utils.popinMedText(
-                'Sub Category ',
-                fontSize: 18.sp,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Utils.popinMedText(
+                    'Sub Category',
+                    fontSize: 18.sp,
+                  ),
+                  const AppInfoWidget(
+                    message: 'Dummmy Data',
+                  )
+                ],
               ),
               16.spaceY,
               TextFieldWidget(

@@ -160,7 +160,7 @@ class CompletedOrderDetailsView extends StatelessWidget {
                       Utils.popinSemBoldText(
                         'Item',
                         color: ColorManager.black,
-                        fontSize: 12.sp,
+                        fontSize: 16.sp,
                       ),
                       10.spaceY,
                       SizedBox(
@@ -174,10 +174,15 @@ class CompletedOrderDetailsView extends StatelessWidget {
                             return Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Utils.popinSemBoldText(
-                                  viewModel.itemList[index],
-                                  color: ColorManager.black,
-                                  fontSize: 12.sp,
+                                InkWell(
+                                  onTap: () {
+                                    showRatingDialog(context);
+                                  },
+                                  child: Utils.popinSemBoldText(
+                                    viewModel.itemList[index],
+                                    color: ColorManager.black,
+                                    fontSize: 16.sp,
+                                  ),
                                 ),
                               ],
                             );
@@ -192,7 +197,7 @@ class CompletedOrderDetailsView extends StatelessWidget {
                       Utils.popinSemBoldText(
                         'Qty',
                         color: ColorManager.black,
-                        fontSize: 12.sp,
+                        fontSize: 16.sp,
                       ),
                       10.spaceY,
                       SizedBox(
@@ -208,7 +213,7 @@ class CompletedOrderDetailsView extends StatelessWidget {
                                 Utils.popinSemBoldText(
                                   '2',
                                   color: ColorManager.black,
-                                  fontSize: 12.sp,
+                                  fontSize: 16.sp,
                                 ),
                               ],
                             );
@@ -223,7 +228,7 @@ class CompletedOrderDetailsView extends StatelessWidget {
                       Utils.popinSemBoldText(
                         'Amount',
                         color: ColorManager.black,
-                        fontSize: 12.sp,
+                        fontSize: 16.sp,
                       ),
                       10.spaceY,
                       SizedBox(
@@ -239,7 +244,7 @@ class CompletedOrderDetailsView extends StatelessWidget {
                                 Utils.popinSemBoldText(
                                   '200',
                                   color: ColorManager.black,
-                                  fontSize: 12.sp,
+                                  fontSize: 16.sp,
                                 ),
                               ],
                             );
@@ -279,14 +284,10 @@ class CompletedOrderDetailsView extends StatelessWidget {
                 ],
               ),
             ),
-            TextButton(
-              onPressed: () {
-                showRatingDialog(context);
-              },
-              child: Utils.popinMedText(
-                'Click on menu to give review',
-                color: ColorManager.primary,
-              ),
+            10.spaceY,
+            Utils.popinMedText(
+              'Click on menu to give review',
+              color: ColorManager.primary,
             ),
           ],
         ),
@@ -317,9 +318,9 @@ class CompletedOrderDetailsView extends StatelessWidget {
                 allowHalfRating: true,
                 itemCount: 5,
                 itemSize: 40.0,
-                itemBuilder: (context, _) => const Icon(
+                itemBuilder: (context, _) => Icon(
                   Icons.star,
-                  color: Colors.amber,
+                  color: ColorManager.accent,
                 ),
                 onRatingUpdate: (newRating) {
                   rating = newRating;

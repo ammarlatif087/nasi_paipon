@@ -6,6 +6,7 @@ import 'package:nasi_paipon/presentation/view_models/auth_view_model.dart';
 
 import '../../../../app/index.dart';
 import '../../../common/app_button.dart';
+import '../../../common/app_info_widget.dart';
 import '../../../common/textform_field.dart';
 import '../../../view_models/select_location_view_model.dart';
 
@@ -48,6 +49,7 @@ class KitchenSignUpView extends StatelessWidget {
                 20.spaceY,
                 Form(
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       TextFieldWidget(
                         keyboardType: TextInputType.name,
@@ -213,6 +215,57 @@ class KitchenSignUpView extends StatelessWidget {
                         },
                       ),
                       20.spaceY,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: const [
+                          Icon(
+                            FontAwesomeIcons.solidImages,
+                          ),
+                          AppInfoWidget(
+                            message:
+                                'Bacon ipsum dolor amet kevin turducken brisket pastrami, salami ribeye spare ribs tri-',
+                          ),
+                        ],
+                      ),
+                      20.spaceY,
+                      Utils.popinBoldText(
+                        'Choose Your account',
+                        fontSize: 16.sp,
+                      ),
+                      20.spaceY,
+                      Row(
+                        children: [
+                          Radio<AccountType>(
+                            activeColor: ColorManager.red,
+                            value: AccountType.personal,
+                            groupValue: viewModel.selectedOption,
+                            onChanged: (value) {
+                              viewModel.setSelectedOption(
+                                value!,
+                              );
+                            },
+                          ),
+                          Utils.popinRegText(
+                            'Personal',
+                            fontSize: 16.sp,
+                          ),
+                          Radio<AccountType>(
+                            activeColor: ColorManager.red,
+                            value: AccountType.company,
+                            groupValue: viewModel.selectedOption,
+                            onChanged: (value) {
+                              viewModel.setSelectedOption(
+                                value!,
+                              );
+                            },
+                          ),
+                          Utils.popinRegText(
+                            'Company',
+                            fontSize: 16.sp,
+                          ),
+                        ],
+                      ),
+                      20.spaceY,
                       TextFieldWidget(
                         keyboardType: TextInputType.number,
                         hintText: 'Company Name',
@@ -243,6 +296,19 @@ class KitchenSignUpView extends StatelessWidget {
                         },
                       ),
                       20.spaceY,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: const [
+                          Icon(
+                            FontAwesomeIcons.solidImages,
+                          ),
+                          AppInfoWidget(
+                            message:
+                                'Bacon ipsum dolor amet kevin turducken brisket pastrami, salami ribeye spare ribs tri-',
+                          ),
+                        ],
+                      ),
+                      20.spaceY,
                       TextFieldWidget(
                         keyboardType: TextInputType.text,
                         hintText: 'Bank',
@@ -271,6 +337,19 @@ class KitchenSignUpView extends StatelessWidget {
                           }
                           return null;
                         },
+                      ),
+                      20.spaceY,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: const [
+                          Icon(
+                            FontAwesomeIcons.solidImages,
+                          ),
+                          AppInfoWidget(
+                            message:
+                                'Bacon ipsum dolor amet kevin turducken brisket pastrami, salami ribeye spare ribs tri-',
+                          ),
+                        ],
                       ),
                       20.spaceY,
                       TextFieldWidget(

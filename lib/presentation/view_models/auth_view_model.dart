@@ -4,6 +4,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:nasi_paipon/app/index.dart';
 import 'package:nasi_paipon/presentation/utils/enums.dart';
 
+enum AccountType { personal, company }
+
 class AuthViewModel extends ChangeNotifier {
   ProfileType? profileType = ProfileType.user;
   var email = '';
@@ -80,6 +82,14 @@ class AuthViewModel extends ChangeNotifier {
       imagePath = pickedImage.path;
       notifyListeners();
     }
+  }
+
+  AccountType _selectedOption = AccountType.personal;
+  AccountType get selectedOption => _selectedOption;
+  void setSelectedOption(AccountType option) {
+    _selectedOption = option;
+    print(_selectedOption);
+    notifyListeners();
   }
 
   @override
