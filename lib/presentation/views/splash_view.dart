@@ -1,4 +1,8 @@
 import 'dart:async';
+import 'dart:convert';
+
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:nasi_paipon/presentation/models/user.dart';
 
 import '../../app/index.dart';
 
@@ -13,11 +17,39 @@ class _SplashViewState extends State<SplashView> {
   late Timer _timer;
 
   void _splashScreenDelay() {
-    _timer = Timer(const Duration(seconds: 3), _goNext);
+    UserHelper.getCurrentUser(onSuccess: (jsonResponse){
+      _goNext(jsonResponse);
+
+    },onError: (err){
+      Fluttertoast.showToast(
+          msg: err,
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0
+      );
+
+    },onTokenFailure: (){
+      Navigator.pushReplacementNamed(context, Routes.userTypeRoute);
+    });
   }
 
-  void _goNext() {
-    Navigator.pushReplacementNamed(context, Routes.userTypeRoute);
+  void _goNext(jsonResponse) {
+    // Navigator.pushReplacementNamed(context, Routes.pickUplocRoute);
+    SharedPreferencesUtil.addItem('user', jsonResponse.toString());
+    User user = User.fromJson(jsonResponse);
+    if(user.userType=='user'){
+      //TODO navigate to specific user main screen
+      Navigator.pushReplacementNamed(context, Routes.bottomNavRoute);
+    }else if(user.userType=="agent"){
+      //TODO same here
+      Navigator.pushReplacementNamed(context,Routes.bottomNavRoute);
+    }else{
+      Navigator.pushReplacementNamed(context,Routes.kitchenSectionRoute);
+    }
+
   }
 
   @override

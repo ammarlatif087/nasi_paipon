@@ -1,14 +1,15 @@
 import 'dart:async';
 
+
 import 'package:image_picker/image_picker.dart';
 import 'package:nasi_paipon/app/index.dart';
-import 'package:nasi_paipon/presentation/utils/enums.dart';
 
 enum AccountType { personal, company }
 
 class AuthViewModel extends ChangeNotifier {
   ProfileType? profileType = ProfileType.user;
   var email = '';
+  var password = '';
   bool isPassObs = true;
   bool isConfObs = true;
   bool isRem = false;
@@ -29,7 +30,6 @@ class AuthViewModel extends ChangeNotifier {
 
   void selectedUser(ProfileType type) {
     profileType = type;
-
     notifyListeners();
   }
 
@@ -43,7 +43,10 @@ class AuthViewModel extends ChangeNotifier {
     email = value;
     notifyListeners();
   }
-
+  void onPasswordChange(String value) {
+    password = value;
+    notifyListeners();
+  }
   void showPassword() {
     isPassObs = !isPassObs;
     notifyListeners();
@@ -96,5 +99,41 @@ class AuthViewModel extends ChangeNotifier {
   void dispose() {
     timer?.cancel();
     super.dispose();
+  }
+
+  login() async {
+    HttpUtil.post(loginUrl,'',{
+      "email":email,"password":password
+    }, onSuccess: (response) {
+      print("OnResponse");
+      // print(response);
+      var token = response['access_token'];
+      if(token!=null){
+        SharedPreferencesUtil.saveUserToken(token);
+        Fluttertoast.showToast(
+            msg: "Successfully Login",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.CENTER,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.green,
+            textColor: Colors.white,
+            fontSize: 16.0
+        );
+        Get.toNamed(Routes.pickUplocRoute);
+      }
+
+    }, onFailure: (error) {
+      print("OnError");
+      print(error);
+      Fluttertoast.showToast(
+          msg: error,
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0
+      );
+    });
   }
 }

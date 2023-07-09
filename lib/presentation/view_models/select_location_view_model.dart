@@ -1,6 +1,17 @@
 import '../../app/index.dart';
 
 class SelectLocationViewModel extends ChangeNotifier {
+  SelectLocationViewModel(){
+   //TODO handle it
+    // UserHelper.loadRegionsData(onSuccess: (regionsList){
+    //   //handle the List<Region>
+    // },onError: (error){
+    //   Utils.showToast(error: true,msg:error);
+    // });
+  }
+
+
+
   List<String> _region = [
     'Region 1',
     'Region 2',

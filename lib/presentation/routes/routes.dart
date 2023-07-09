@@ -110,7 +110,6 @@ class RoutesGenerator {
         return MaterialPageRoute(builder: (_) => const PickUpLocationView());
       case Routes.bottomNavRoute:
         return MaterialPageRoute(builder: (_) => const BottomNavigationView());
-
       case Routes.menuDetailRoute:
         return MaterialPageRoute(builder: (_) => const MenuDetailView());
       case Routes.editProfileRoute:

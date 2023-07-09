@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
 
-import '../src/index.dart';
+
+import '../../app/index.dart';
 
 class Utils {
   static fieldFocusChange(
@@ -11,6 +11,19 @@ class Utils {
     currentNode.unfocus();
     FocusScope.of(context).requestFocus(nextNode);
   }
+
+  static showToast({ error,msg}){
+    Fluttertoast.showToast(
+        msg: msg?? "Null",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        backgroundColor: error==true ?Colors.red: Colors.green,
+        textColor: Colors.white,
+        fontSize: 16.0
+    );
+  }
+
 
   static snackBar(BuildContext context, String message) {
     return ScaffoldMessenger.of(context).showSnackBar(

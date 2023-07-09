@@ -13,7 +13,7 @@ class QRGeneratorViewModel extends ChangeNotifier {
 
   Widget generateQRCode() {
     if (_data.isNotEmpty) {
-      return QrImage(data: _data, version: QrVersions.auto, size: 200.0);
+      return QrImageView(data: _data, version: QrVersions.auto, size: 200.0);
     } else {
       return Container();
     }

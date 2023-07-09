@@ -68,6 +68,10 @@ class LoginView extends StatelessWidget {
                           }
                           return null;
                         },
+                        onChange: (value){
+                          viewModel.onPasswordChange(value);
+                        },
+                        onSave: (lastValue){},
                       ),
                       30.spaceY,
                       Row(
@@ -96,7 +100,7 @@ class LoginView extends StatelessWidget {
                         onPress: () {
                           viewModel.profileType == ProfileType.kitchen
                               ? Get.toNamed(Routes.kitchenSectionRoute)
-                              : Get.toNamed(Routes.pickUplocRoute);
+                              : viewModel.login();
                         },
                         child: Utils.popinMedText('Log in',
                             color: ColorManager.white, fontSize: 16.sp),

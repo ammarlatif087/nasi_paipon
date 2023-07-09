@@ -48,6 +48,9 @@ dependencies:
   flutter_rating_bar: ^4.0.1
   image_picker: ^0.8.9
   just_the_tooltip: ^0.0.12
+  shared_preferences: ^2.2.0
+  http: ^1.1.0
+  fluttertoast: ^8.2.2
 dev_dependencies:
   flutter_test:
     sdk: flutter
